@@ -18,9 +18,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "prettier": "prettier  \"**/*.+(js|ts|css|sass|less|graphql|scss|json)\"",
+    "format": "npm run prettier -- --write",
+    "validate": "npm run prettier -- --list-different && npm run lint"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +42,27 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.39.0",
+    "@typescript-eslint/parser": "^5.39.0",
+    "eslint": "^8.24.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.8",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    },
+    "lint-staged": {
+      "ignore": [
+        "node_modules",
+        "build"
+      ]
+    }
   }
 }
